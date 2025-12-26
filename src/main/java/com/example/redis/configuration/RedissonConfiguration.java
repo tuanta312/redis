@@ -1,5 +1,7 @@
 package com.example.redis.configuration;
 
+import org.redisson.Redisson;
+import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -24,5 +26,10 @@ public class RedissonConfiguration {
                 .setDatabase(0)
                 .setConnectionPoolSize(10);
         return config;
+    }
+
+    @Bean
+    public RedissonClient redissonClient() {
+        return Redisson.create(config());
     }
 }

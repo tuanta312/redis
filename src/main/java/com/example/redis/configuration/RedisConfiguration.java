@@ -22,6 +22,11 @@ public class RedisConfiguration {
     @Value("${spring.data.redis.port}")
     private int port;
 
+    @Bean(destroyMethod = "shutdown")
+    public DefaultClientResources lettuceClientResources() {
+        return DefaultClientResources.create();
+    }
+
     @Bean
     public JedisConnectionFactory jedisConnectionFactory() {
         RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration();
